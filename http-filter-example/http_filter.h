@@ -23,7 +23,7 @@ private:
 
 using HttpSampleDecoderFilterConfigSharedPtr = std::shared_ptr<HttpSampleDecoderFilterConfig>;
 
-class HttpSampleDecoderFilter : public PassThroughDecoderFilter {
+class HttpSampleDecoderFilter : public PassThroughFilter {
 public:
   HttpSampleDecoderFilter(HttpSampleDecoderFilterConfigSharedPtr);
   ~HttpSampleDecoderFilter();
@@ -35,6 +35,8 @@ public:
   FilterHeadersStatus decodeHeaders(RequestHeaderMap&, bool) override;
   FilterDataStatus decodeData(Buffer::Instance&, bool) override;
   void setDecoderFilterCallbacks(StreamDecoderFilterCallbacks&) override;
+
+  Http::FilterDataStatus encodeData(Buffer::Instance&, bool end_stream) override;
 
 private:
   const HttpSampleDecoderFilterConfigSharedPtr config_;

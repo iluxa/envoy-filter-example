@@ -39,7 +39,7 @@ private:
 
     return [config](Http::FilterChainFactoryCallbacks& callbacks) -> void {
       auto filter = new Http::HttpSampleDecoderFilter(config);
-      callbacks.addStreamDecoderFilter(Http::StreamDecoderFilterSharedPtr{filter});
+      callbacks.addStreamFilter(Http::StreamFilterSharedPtr{filter});
     };
   }
 };

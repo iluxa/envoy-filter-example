@@ -41,5 +41,12 @@ void HttpSampleDecoderFilter::setDecoderFilterCallbacks(StreamDecoderFilterCallb
   decoder_callbacks_ = &callbacks;
 }
 
+Http::FilterDataStatus HttpSampleDecoderFilter::encodeData(Buffer::Instance&, bool end_stream) {
+  if (end_stream) {
+    sleep(1);
+  }
+  return Http::FilterDataStatus::Continue;
+}
+
 } // namespace Http
 } // namespace Envoy
