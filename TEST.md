@@ -12,6 +12,11 @@ bazel build //http-filter-example:envoy
 bazel-bin/http-filter-example/envoy -c forward-proxy.yaml
 ```
 
+### Run envoy in transparent mode
+```
+bazel-bin/http-filter-example/envoy -c forward-proxy-transparent.yaml
+```
+
 ### configure upstream server
 it could be HTTP/1.1 or HTTP/2 server, which has default page with two images
 
